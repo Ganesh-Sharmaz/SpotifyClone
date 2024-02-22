@@ -1,4 +1,4 @@
-# Groovy - Your Ultimate Music Destination 🎶
+![# Groovy - Your Ultimate Music Destination 🎶](https://groovy-nine.vercel.app/)
 
 Welcome to **Groovy**, the ultimate music website where you can discover and listen to your favorite tunes in a breeze! Groovy is a stunning music platform crafted with React and Tailwind CSS, offering a seamless and visually captivating experience for music enthusiasts of all kinds.
 
@@ -10,7 +10,7 @@ Welcome to **Groovy**, the ultimate music website where you can discover and lis
 
 - **Vast Music Library:** With access to a vast music library, Groovy lets you explore and listen to a diverse range of songs, ensuring there's something for everyone.
 
-- **Search Functionality:** Looking for a specific song? No problem! Groovy's powerful search functionality allows you to find any song with ease, ensuring you never miss out on your favorite tracks.
+- **Search Functionality:** Looking for a specific song? No problem! Groovy's powerful search functionality allows you to find any song with ease, ensuring you never miss out on your favorite tracks.  
 
 - **Optimized Loading:** Groovy is optimized for speed and efficiency. Thanks to a smart loading menu, you'll always be kept informed whenever an API request is made, ensuring a smooth and seamless browsing experience.
 
