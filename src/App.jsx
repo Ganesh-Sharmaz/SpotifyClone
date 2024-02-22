@@ -21,9 +21,9 @@ function App() {
     setIsLoading(false)
   };
   
-  // useEffect(() => {
-  //   getStart();
-  // }, [])
+  useEffect(() => {
+    getStart();
+  }, [])
   
 
 
