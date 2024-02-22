@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import "./index.css"
 
 import "/public/listening.png"
@@ -6,26 +6,29 @@ import "/public/listening.png"
 
 function App() {
 
+  
+
   const [tracks, setTracks] = useState([])
 
   const getTracks = async () => {
     const data = await fetch("https://v1.nocodeapi.com/codedevta/spotify/wohCohWFpBssKuLL/search?q=daku&type=track&perPage=20&page=1")
     const convertedData = await data.json()
-    console.log(convertedData.album.tracks) 
-    console.log(convertedData.album.UPtracks.items  )
-
+    console.log(convertedData.tracks.items) 
+    console.log()
 
   }
   
 
   return (
     <>
-    <div className=' bg-charco  w-full h-screen'>
+    <div className=' bg-charco w-full min-h-screen ' id="circles-container">
+    
+    
     <navbar>
-      <header className=" bg-deep">
+      <header className=" bg-deep py-2">
         <div className="container mx-auto px-4  flex items-center">
           {/* logo */}
-          <div className="mr-auto md:w-48 flex-shrink-0 flex flex-row items-center  gap-2">
+          <div className="mr-auto pl-1 md:pl-10 md:w-48 flex-shrink-0 flex flex-row items-center  gap-2">
           <img
           className=" h-10 md:h-14 brightness-125 "
           src="listening.png"
@@ -34,14 +37,14 @@ function App() {
           <p className="text-xl md:text-4xl font-mono font-bold text-white px-1">TuneHub</p>
         </div>
         {/* search */}
-        <div className="w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100   rounded-md flex xl:flex items-center">
+        <div className=" ml-3 w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100   rounded-md flex xl:flex items-center ">
         
           <input
-            className=" p-2 w-12  mr-4  border-gray-300 bg-transparent font-semibold text-sm pl-4 md:w-full"
+            className=" p-2 w-20  mr-2  border-gray-300 bg-transparent font-semibold text-sm pl-4 md:w-full"
             type="text"
             placeholder="I'm searching for ..."
           />
-          <button onClick={getTracks}>
+          <button onClick={getTracks} className=''>
             <svg
               className=" h-5 pr-2 text-gray-500"
               aria-hidden="true"
@@ -59,7 +62,7 @@ function App() {
       </div>
       
       {/* buttons */}
-      <nav className="contents  ">
+      <nav className=" hidden md:block  ">
         <ul className=" px-3 flex items-center mr-4 lg:mr-6 xl:mr-8">
           
         
@@ -125,6 +128,12 @@ function App() {
         
       </header>
     </navbar>
+    
+    <div className=" hidden md:block absolute w-72 h-72 bg-gray-800 rounded-full opacity-50 animate-wiggle " style={{ top: '20%', left: '20%' }}></div>
+
+        {/* Circle 2 */}
+        <div className="hidden md:block absolute w-64 h-64 bg-gray-700 rounded-full opacity-50 animate-tiggle" style={{ top: '50%', left: '50%' }}></div>
+
     <div className=' container'>
       <div className=' row-auto'>
         {
