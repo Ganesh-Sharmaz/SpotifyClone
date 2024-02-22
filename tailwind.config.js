@@ -6,6 +6,13 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+
+        'Beauty': ['Allura', 'cursive'],
+        'Dance': [ 'Pacifico', 'cursive'],
+        'raleway': ["Raleway", "sans-serif"]
+
+      },
       colors: {
         'deep' : '#3C0919',
         'charco': '#1E1E1E',
@@ -35,6 +42,7 @@ export default {
         wiggle: 'wiggle 20s linear infinite',
         tiggle: 'tiggle 20s linear infinite',
       },
+
       
     },
   },
