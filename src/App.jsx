@@ -12,7 +12,7 @@ function App() {
     const data = await fetch("https://v1.nocodeapi.com/codedevta/spotify/wohCohWFpBssKuLL/search?q=daku&type=track&perPage=20&page=1")
     const convertedData = await data.json()
     console.log(convertedData.album.tracks) 
-    console.log(convertedData.album.tracks.items  )
+    console.log(convertedData.album.UPtracks.items  )
 
 
   }
