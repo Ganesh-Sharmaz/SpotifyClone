@@ -60,6 +60,7 @@ function App() {
             </svg>
           </button>
       </div>
+      <a href="https://www.buymeacoffee.com/ganesh_sharmaz" className='hidden md:block' target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" className=' pl-4 w-[217px] h-[50px]' /></a>
       
       {/* buttons */}
       <nav className=" hidden md:block  ">
@@ -229,6 +230,9 @@ function App() {
             </button>
               
             </a>
+          </li>
+          <li>
+          <a href="https://www.buymeacoffee.com/ganesh_sharmaz" className=' w-[217px] md:hidden' target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-red.png" alt="Buy Me A Coffee" className=' pl-4 h-[40px]' /></a>
           </li>
         </ul>
       </nav>
