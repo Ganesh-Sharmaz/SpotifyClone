@@ -21,9 +21,9 @@ function App() {
     setIsLoading(false)
   };
   
-  useEffect(() => {
-    getStart();
-  }, [])
+  // useEffect(() => {
+  //   getStart();
+  // }, [])
   
 
 
@@ -61,17 +61,17 @@ function App() {
                 </p>
               </div>
               {/* search */}
-              <div className=" ml-3 w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100   rounded-md flex xl:flex items-center ">
+              <div className=" ml-3 sm:w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100   rounded-md flex xl:flex items-center ">
                 <input
                   value={keyword}
                   onChange={(event) => {
                     setKeyword(event.target.value);
                   }}
-                  className=" p-2 w-32  mr-2  border-gray-300 bg-transparent font-semibold text-sm pl-4 md:w-full"
+                  className=" p-2 w-36  mr-2  border-gray-300 bg-transparent font-semibold text-sm pl-4 md:w-full"
                   type="text"
                   placeholder="I'm searching for ..."
                 />
-                <button onClick={getTracks} className=" pl-2 md:pl-0 md:pr-2">
+                <button onClick={getTracks} className=" pl-2 pr-2 md:pl-0 md:pr-2">
                   <svg
                     className=" h-5 pr-0  md:pr-2 text-gray-500"
                     aria-hidden="true"
