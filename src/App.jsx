@@ -1,32 +1,49 @@
 import { useState, useEffect } from "react";
-import "./index.css";   
+import "./index.css";
 
 import "/public/listening.png";
 
 function App() {
-  const [expanded, setExpanded] = useState(false);
-  const [keyword, setKeyword] = useState("")
 
-  const toggleHeight = () => {
-    setExpanded(!expanded);
-  };
-
+  const [keyword, setKeyword] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [tracks, setTracks] = useState([]);
 
+
+  const getStart = async () => {
+    setIsLoading(true)
+    const data = await fetch(
+      `https://v1.nocodeapi.com/codedevta/spotify/wohCohWFpBssKuLL/usersTop?type=tracks&perPage=20&page=1`
+    );
+    const convertedData = await data.json();
+    
+    setTracks(convertedData.items)
+    setIsLoading(false)
+  };
+  
+  useEffect(() => {
+    getStart();
+  }, [])
+  
+
+
+
   const getTracks = async () => {
+    setIsLoading(true)
     const data = await fetch(
       `https://v1.nocodeapi.com/codedevta/spotify/wohCohWFpBssKuLL/search?q=${keyword}&type=track&perPage=20&page=1`
     );
     const convertedData = await data.json();
     console.log(convertedData.tracks.items);
     console.log();
-    setTracks(convertedData.tracks.items)
+    setTracks(convertedData.tracks.items);
+    setIsLoading(false)
   };
 
   return (
     <>
       <div
-        className="grid relative bg-gradient-to-br from-pink-700 to-purple-900 w-full  "
+        className="grid relative bg-gradient-to-br from-pink-700 to-purple-900 w-full grid-rows-[auto,1fr]  "
         id="circles-container"
       >
         <navbar>
@@ -47,12 +64,14 @@ function App() {
               <div className=" ml-3 w-full max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100   rounded-md flex xl:flex items-center ">
                 <input
                   value={keyword}
-                  onChange= {event=>{setKeyword(event.target.value)}}
-                  className=" p-2 w-24  mr-2  border-gray-300 bg-transparent font-semibold text-sm pl-4 md:w-full"
+                  onChange={(event) => {
+                    setKeyword(event.target.value);
+                  }}
+                  className=" p-2 w-32  mr-2  border-gray-300 bg-transparent font-semibold text-sm pl-4 md:w-full"
                   type="text"
                   placeholder="I'm searching for ..."
                 />
-                <button onClick={getTracks} className=" pl-12 md:pl-0 md:pr-2">
+                <button onClick={getTracks} className=" pl-2 md:pl-0 md:pr-2">
                   <svg
                     className=" h-5 pr-0  md:pr-2 text-gray-500"
                     aria-hidden="true"
@@ -178,6 +197,15 @@ function App() {
           style={{ top: "50%", left: "50%" }}
         ></div>
 
+        <div className={`${isLoading ? '': "hidden"}  grid gap-3 grid-cols-1 overflow-auto `}>
+          <div className="flex space-x-2 justify-center items-center h-svh  dark:invert overflow-auto">
+            <span className="sr-only">Loading...</span>
+            <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+            <div className="h-8 w-8 bg-black rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+            <div className="h-8 w-8 bg-black rounded-full animate-bounce"></div>
+          </div>
+        </div>
+
         <div className=" mt-20 sm:mt-24 m-4 grid gap-3 grid-cols-1 sm:grid-cols-5">
           {/* <div
             className={`${
@@ -193,11 +221,13 @@ function App() {
             </button>
           </div> */}
 
-
           {/* CARD 1 */}
-          {
-            tracks.map((element) => {
-              return  <div key={element.id} className="bg-gray-900 shadow-lg rounded p-3">
+          {tracks.map((element) => {
+            return (
+              <div
+                key={element.id}
+                className="bg-gray-900 shadow-lg rounded p-3"
+              >
                 <div className="group relative">
                   <img
                     className="w-full md:w-72 flex overflow-hidden rounded"
@@ -207,18 +237,23 @@ function App() {
                 </div>
                 <div className=" focus-within:shadow-2xl p-5 content-center flex flex-col items-center justify-center">
                   <h3 className="text-white text-xl">{element.name}</h3>
-                  <p className="text-gray-400 ">Artist: {element.album.artists[0].name}</p>
-                  <p className="text-gray-400 pb-3">Release Date: {element.album.release_date}</p>
-                  <audio id="audio-player"  controls src={element.preview_url}></audio>
+                  <p className="text-gray-400 ">
+                    Artist: {element.album.artists[0].name}
+                  </p>
+                  <p className="text-gray-400 pb-3">
+                    Release Date: {element.album.release_date}
+                  </p>
+                  <audio
+                    id="audio-player"
+                    controls
+                    src={element.preview_url}
+                  ></audio>
                 </div>
               </div>
-            })
-          }
+            );
+          })}
 
-          
           {/* END OF CARD 1 */}
-
-          
         </div>
         <footer className="bg-black h-12 sticky bottom-0  md:hidden flex justify-center items-center">
           <nav className=" ">
